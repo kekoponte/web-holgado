@@ -423,6 +423,33 @@ a:hover {
       object-fit: cover;
     }
 
+    .upcoming-badge {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      top: 14px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(0,0,0,0.62);
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 4;
+    }
+
+    .album-card.upcoming-card:hover .upcoming-badge,
+    .album-card.upcoming-card:focus-within .upcoming-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .album-player {
       position: absolute;
       left: 14px;
@@ -1506,17 +1533,17 @@ position: relative;
         </p>
 
         <div class="albums-grid">
-          <article class="album-card" data-audio="assets/audio/estas-solo-aqui.m4a">
+          <article class="album-card upcoming-card">
             <div class="album-cover">
               <img src="assets/images/estassoloaqui.jpg" alt="Portada del disco Estás solo aquí">
-              
+              <div class="upcoming-badge" aria-hidden="true">Próximamente</div>
             </div>
             <div class="album-content">
               <h3 class="album-title">Estás solo aquí</h3>
               <div class="album-year">2026</div>
               <p class="album-text">
-                Grabado y producido por Holgado. Mezclado y masterizado por Dany Richter en El Lado Izquierdo.</p>
-                <p>"Estás solo aquí" verá la luz a lo largo de 2026. </p>
+                Grabado y producido por Holgado. Mezclado y masterizado por Dany Richter en El Lado Izquierdo.<br><br>
+              "Estás solo aquí" verá la luz a lo largo de 2026. </p>
             </div>
           </article>
 
@@ -1593,16 +1620,16 @@ position: relative;
         <h2 class="section-title">Biografía</h2>
         <div class="bio-box">
           <p>
-            Llevo editando música de una u otra manera desde el 2003. Aunque en la actualidad rara vez toco en directo, en una primera etapa sí tocaba a menudo con una formación en la que el único miembro fijo ha sido siempre Salva González (La tienda de regalos tóxicos). Otros músicos que han formado parte de manera más itinerante en los directos son Juan Díaz (Casa, Campo Grande, Los Pintores...), Elisa García u Olmo Romero.
+            Llevo editando música de una u otra manera desde el 2003. 
           </p>
           <p>
-            He puesto música a series de televisión como "Luimelia", "Bloguera en construcción" o "Los Años Nuevos", además de componer <a href="https://open.spotify.com/intl-es/album/3DEJyl3W9ZJqunVcMg7ztj" target="_blank">el himno del festival</a> homenaje a Casavella "El Día del Watusi".
+            Mis canciones han sido utilizadas en series de televisión como "Luimelia", "Bloguera en construcción" o "Los Años Nuevos", además de componer música original para El Castillo, que se estrenará en Movistar Plus en Octubre.
           </p>
           <p>
             En el año 2020 publiqué "O Fillo de Suso", un disco en gallego editado por A Regueifa como su primera referencia tras su refundación, y grabé la primera de las ahora famosas Miudiño Sesions en Galicia con mis primos Daniel y Diego Vieito.
           </p>
           <p>
-            En 2026 verá la luz lo último que he grabado: "Estás solo aquí".
+            En 2026 verá la luz lo último que he grabado: "Estás solo aquí". Han pasado por este proyecto diferentes músicos a lo largo de los años, siendo el único miembro fijo Salva González (La tienda de regalos tóxicos). Otros músicos que han formado parte de manera más itinerante en los directos son Juan Díaz (Casa, Campo Grande, Los Pintores...), Elisa García u Olmo Romero.
           </p>
           <p style="margin-top: 30px;">Puedes encontrarme en redes en:</p>
           <p>
@@ -1829,21 +1856,21 @@ position: relative;
       <div class="marquee__track">
         <div class="marquee__content">
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
         </div>
         <div class="marquee__content">
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
         </div>
         <div class="marquee__content">
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
           <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
-          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>★ Nuevo disco de Holgado en 2026 ★</span>
         </div>
       </div>
     </div>
