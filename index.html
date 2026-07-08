@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04R0PMYYKZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-04R0PMYYKZ');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <title>Holgado</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --bg-soft: #18181b;
+      --card: rgba(255, 255, 255, 0.04);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f5f5f5;
+      --muted: #b3b3b3;
+      --accent: #ffffff;
+      --max-width: 1200px;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --bg-shift-y: 0px;
+      --bg-glow: 0.06;
+      --bg-rotate: 0deg;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Work Sans, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,calc(var(--bg-glow))), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,calc(var(--bg-glow) * 0.66)), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    main {
+          border-top: 1px #2a2a2a solid;
+    box-shadow: -1px -9px 5px 0px #0000003b;
+    z-index: 10000;
+    position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -12%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.32;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.09), transparent 18%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,0.05), transparent 16%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,0.04), transparent 22%);
+      transform: translateY(var(--bg-shift-y)) rotate(var(--bg-rotate));
+      transition: transform 0.18s linear, opacity 0.18s linear;
+    }
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+a:hover {
+      text-underline-offset: 4px;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+}
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+      clear: both;
+    }
+
+    .section {
+      padding: 30px 0;
+      clear: both;
+    }
+
+    .section-title {
+    font-size: clamp(1.26rem, 2.1vw, 2.1rem);
+    font-weight: 500;
+    margin-bottom: 15px;
+    letter-spacing: -0.03em;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+    }
+
+    /* HERO */
+    .hero {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      padding: 40px 0 20px;
+      background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(assets/images/background.jpg);
+      background-size: auto 140%;
+      background-position: bottom;
+      position: relative;
+      overflow: clip;
+    }
+
+    .hero::before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    inset: -5%;
+    background: url(assets/images/noise_mixed.png) repeat;
+    background-size: 320px 320px;
+    opacity: 0.65;
+    mix-blend-mode: hard-light;
+    pointer-events: none;
+    animation: hero-noise 0.3s steps(3) infinite; 
+    z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.015), rgba(255,255,255,0.015)),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 20px;
+  animation: mover linear both;
+  animation-timeline: view();
+  animation-range: exit -20% exit 120%;
+  animation-duration: auto;
+}
+ 
+@keyframes mover {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    transform: translateY(70%) rotate(-10deg);
+    opacity: 0;
+    filter: blur(15px);
+  }
+}
+
+    @keyframes hero-noise {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-2%, 1%); }
+      40%  { transform: translate(1%, -1%); }
+      60%  { transform: translate(2%, 2%); }
+      80%  { transform: translate(-1%, -2%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .artist-name {
+      font-size: clamp(4rem, 14vw, 11rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color:#fff;
+      font-family: Helvetica;
+      filter: blur(0px);
+      animation: blur 5s ease-out 1s infinite;
+      -webkit-animation: blur 5s ease-out 1s infinite;
+      -moz-animation: blur 5s ease-out 1s infinite;
+    }
+
+    @keyframes blur {
+      30% { filter: blur(1px); }
+      50% { filter: blur(4px); }
+      70% { filter: blur(1px); }
+    }
+
+    .hero-text {
+      max-width: 680px;
+      color: #cfcfcf;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      margin-left: 12px;
+      text-shadow: 0px 0px 40px #000;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+      margin-left: -18px;
+    }
+
+    .button {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      transition: 0.25s ease;
+      font-weight: 300;
+      font-size: 100%;
+    }
+
+    .button:hover {
+      background: rgba(255,255,255,0.20);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    /* STICKY MENU */
+    .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    background: rgb(0 0 0 / 87%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(14px);
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    will-change: transform;
+    filter: grayscale(1);
+    }
+
+    body.nav-visible .sticky-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sticky-nav-inner {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .sticky-brand {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: #bfbfbf;
+      white-space: nowrap;
+      filter: blur(0px);
+      animation: blursticky 4s ease-out 1s infinite;
+      -webkit-animation: blursticky 4s ease-out 1s infinite;
+      -moz-animation: blursticky 4s ease-out 1s infinite;
+    }
+
+@keyframes blursticky {
+      30% { filter: blur(0px); }
+      50% { filter: blur(3px); }
+      70% { filter: blur(0px); }
+    }
+
+        .sticky-brand:hover {
+          text-decoration: none;
+          color: #ffffff;
+        }
+
+    .sticky-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sticky-link {
+      padding: 5px 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: #888888;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .sticky-link:hover {
+      background-color: #1c1c1c;
+      color: #fff;
+      border-color: var(--line);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .sticky-link.active {
+      background: rgba(255,255,255,0.16);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .sticky-streaming {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 6px;
+    }
+
+    .sticky-streaming a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .sticky-streaming a:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-1px);
+      text-decoration: none;
+      filter: brightness(2);
+    }
+
+    .sticky-streaming img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      filter: contrast(0) opacity(0.9);
+    }
+
+    .menu-toggle,
+    .menu-button {
+      display: none;
+    }
+
+    #discos,
+    #bio,
+    #media,
+    #Tienda {
+      scroll-margin-top: 95px;
+    }
+
+    /* MINI PLAYER EN DISCOS */
+    .album-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .album-card:hover,
+    .album-card.is-playing {
+      transform: translateY(-10px);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .album-cover {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #2c2c31, #111114);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8e8e95;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      overflow: hidden;
+    }
+
+    .album-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .album-player {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(10,10,11,0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 3;
+    }
+
+    .album-card:hover .album-player,
+    .album-card.is-playing .album-player,
+    .album-card:focus-within .album-player {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .album-play-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      transition: 0.2s ease;
+      position: relative;
+      font-size: 0;
+      line-height: 0;
+    }
+
+    .album-play-btn:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-1px);
+    }
+
+    .album-play-btn::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid #fff;
+      margin-left: 2px;
+      transition: opacity 0.15s ease;
+    }
+
+    .album-play-btn.is-pause::before {
+      content: "";
+      width: 10px;
+      height: 12px;
+      border: 0;
+      margin-left: 0;
+      background:
+        linear-gradient(to right,
+          #fff 0 3px,
+          transparent 3px 7px,
+          #fff 7px 10px);
+    }
+
+    .album-player-meta {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .album-player-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .album-player-state-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .album-player-state {
+      font-size: 0.74rem;
+      line-height: 1.1;
+      color: #cfcfcf;
+    }
+
+    .mini-eq {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 10px;
+      opacity: 0.75;
+    }
+
+    .mini-eq span {
+      width: 2px;
+      height: 4px;
+      background: #e1de55;
+      border-radius: 999px;
+      transform-origin: bottom;
+      animation: eq-idle 1.2s ease-in-out infinite;
+    }
+
+    .mini-eq span:nth-child(2) { animation-delay: 0.12s; }
+    .mini-eq span:nth-child(3) { animation-delay: 0.24s; }
+    .mini-eq span:nth-child(4) { animation-delay: 0.36s; }
+
+    @keyframes eq-idle {
+      0%, 100% { height: 3px; opacity: 0.45; }
+      50% { height: 7px; opacity: 0.8; }
+    }
+
+    .album-card.is-playing .mini-eq span:nth-child(1) { animation: eq-live 0.7s ease-in-out infinite; }
+    .album-card.is-playing .mini-eq span:nth-child(2) { animation: eq-live 0.55s ease-in-out infinite 0.06s; }
+    .album-card.is-playing .mini-eq span:nth-child(3) { animation: eq-live 0.8s ease-in-out infinite 0.12s; }
+    .album-card.is-playing .mini-eq span:nth-child(4) { animation: eq-live 0.62s ease-in-out infinite 0.18s; }
+
+    @keyframes eq-live {
+      0%, 100% { height: 3px; }
+      25% { height: 9px; }
+      50% { height: 5px; }
+      75% { height: 10px; }
+    }
+
+    .album-player-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+
+    .album-player-link {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      transition: 0.2s ease;
+      pointer-events: auto;
+    }
+
+    .album-player-link:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-1px);
+    }
+
+    .album-player-link img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      filter: contrast(0) opacity(0.92);
+    }
+
+    /* ALBUMS */
+    .albums-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .album-content {
+      padding: 22px;
+    }
+
+    .album-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .album-year {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .album-text {
+      color: #d6d6d6;
+      font-size: 1.1rem;
+    }
+
+    /* BIO */
+    .bio-box {
+      width: 49%;
+      float:left;
+      margin-bottom: 120px;
+    }
+
+.nodeco:hover {
+  text-decoration: none;
+}
+
+    .bio-box p {
+      color: #c7c7c7;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .bio-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .bio-foto {
+      width: 49%;
+      float: right;
+      text-align: center;
+    }
+
+    .bio {
+      border: 1px solid #ffffff47;
+      padding: 4px;
+    }
+
+    .pie {
+      text-align: right;
+      font-size: 80%;
+      margin-top: 5px;
+      color:#888888;
+    }
+
+    /* PRESS + VIDEOS */
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+    background: var(--card);
+    padding: 15px 15px 15px 15px;
+    width: 99%;
+    clear: both;
+    margin-bottom: 20px;
+    border: 1px solid #4a4a4a;
+    }
+
+    .panel h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .press-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .press-item {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .press-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .press-item a {
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .press-item p,
+    .video-item p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+.press-item a:link {
+      text-underline-offset: 4px;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+}
+
+    .video-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 10px;
+    }
+
+    .video-shell {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .video-shell:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .video-poster-btn {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+      padding: 0;
+      background: #111;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .video-poster-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.35s ease;
+      filter: brightness(0.6) contrast(0.9) saturate(0.8);
+    }
+
+    .video-shell:hover .video-poster-btn img {
+      transform: scale(1.03);
+      filter: brightness(1) contrast(1) saturate(1);
+    }
+
+    .video-poster-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.40), rgba(0,0,0,0.10) 38%, rgba(0,0,0,0.20)),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      pointer-events: none;
+    }
+
+    .video-play-ui {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: rgba(10,10,11,0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .video-play-btn-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .video-play-btn-icon::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #fff;
+      margin-left: 3px;
+    }
+
+    .video-play-meta {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-play-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .video-play-subtitle {
+      margin-top: 4px;
+      font-size: 0.76rem;
+      line-height: 1.1;
+      color: #d6d6d6;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .video-embed {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* TIENDA */
+    .linktienda {
+      color:#000;
+      text-decoration: underline;
+    }
+
+    .btn-agotado {
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      transition: 0.25s ease;
+      font-weight: 300;
+      font-size: 100%;
+      margin: 10px 40px 10px 40px;
+      display: block;
+      text-align: center;
+      background: #b500003b;
+    }
+
+    .btn-agotado:hover{
+      background: #ff61613b;
+      transform: translateY(-1px);
+    }
+
+    .popup-toggle {
+      display: none;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+    }
+
+    .popup-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: black;
+      padding: 24px;
+      width: min(90%, 420px);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .popup-toggle:checked + .btn-agotado + .popup-overlay {
+      display: block;
+    }
+
+    /* FOOTER NUEVO */
+    .site-footer {
+position: relative;
+    margin-top: 70px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(assets/images/background.jpg);
+    background-position: center 65%;
+    background-size: cover;
+    overflow: hidden;
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.10), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.06), transparent 28%);
+      pointer-events: none;
+    }
+
+    .footer-inner {
+      position: relative;
+      z-index: 1;
+      padding: 56px 0 120px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .footer-brand h3 {
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      font-family: Helvetica, Arial, sans-serif;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand p {
+      max-width: 520px;
+      color: #dddddd;
+      font-size: 1rem;
+    }
+
+    .footer-block-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d8d8d8;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .footer-links,
+    .footer-stream-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a,
+    .footer-stream-links a {
+      color: #f1f1f1;
+      opacity: 0.92;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      width: fit-content;
+    }
+
+    .footer-links a:hover,
+    .footer-stream-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-socials a {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-socials a:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.24);
+      transform: translateY(-1px);
+      text-decoration: none;
+      filter: brightness(1.5);
+    }
+
+    .footer-socials img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      filter: contrast(0) opacity(0.95);
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      color: #d0d0d0;
+      font-size: 0.95rem;
+    }
+
+    .footer-bottom p {
+      max-width: 760px;
+    }
+
+    .footer-credit {
+      color: #9f9f9f;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    /* BANNER */
+    .marquee{
+      width: 100%;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .keko-bottom-banner{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      z-index: 10000;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 0;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .keko-bottom-banner a{
+      color: #fff;
+    }
+
+    .marquee__track{
+      display: flex;
+      align-items: center;
+      width: max-content;
+      will-change: transform;
+      animation: keko-marquee 22s linear infinite;
+      color: #e6e257;
+      line-height: 1;
+    }
+
+    .marquee__content{
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      gap: 55px;
+      padding-inline: 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1;
+      min-height: 56px;
+    }
+
+    @keyframes keko-marquee{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+
+    .sr-only{
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .social {
+      width: 30px;
+      height: 34px;
+      width: auto;
+      display: inline;
+      filter: contrast(0.0) opacity(0.8) brightness(1);
+      margin: 10px 10px 0px 0px;
+    }
+
+    .social:hover {
+      transform: translateY(-1px);
+      filter: contrast(0.0) opacity(1) brightness(1.5);
+      text-decoration: none;
+    }
+
+    .iconred {
+      width: 45px;
+      padding: 8px 0px 0px 0px !important;
+      margin-left: 15px;
+      filter: opacity(0.6);
+    }
+
+    .iconred:hover {
+      transform: translateY(-1px);
+      filter: opacity(0.8);
+      text-decoration: none;
+    }
+
+    .logocasaponte {
+      width: 37px;
+      float:left;
+      margin-right: 10px;
+      filter: opacity(0.7);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .marquee__track{ animation: none; }
+      .hero::before { animation: none; }
+      .sticky-nav,
+      body::before,
+      .album-card,
+      .album-player,
+      .button,
+      .sticky-link,
+      .footer-links a,
+      .footer-stream-links a,
+      .footer-socials a,
+      .video-shell,
+      .video-poster-btn img {
+        transition: none;
+      }
+      .mini-eq span {
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sticky-nav {
+        top: 0;
+        transform: translate3d(0,-110%,0);
+      }
+
+      .sticky-nav-inner {
+        min-height: 60px;
+        position: relative;
+        padding-top: 0;
+        align-items: center;
+      }
+
+      .menu-button {
+        display: inline-flex;
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .menu-dots {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu-dots span {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #fff;
+        display: block;
+      }
+
+      .sticky-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: min(320px, 92vw);
+        padding: 14px;
+        background: rgba(15,15,16,0.98);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+
+      .sticky-link {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.03);
+      }
+
+      .sticky-streaming {
+        margin-left: 0;
+        padding-top: 6px;
+        border-top: 1px solid var(--line);
+        justify-content: flex-start;
+      }
+
+      .menu-toggle:checked ~ .sticky-menu {
+        display: flex;
+      }
+
+      .album-player {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+
+
+    @media (max-width: 900px) {
+            .albums-grid {
+        grid-template-columns: 1fr;
+      }
+}
+
+    @media (max-width: 1040px) {
+      .button {
+        font-size:80%;
+      }
+
+      .noshow {
+        display: none;
+      }
+
+      .media-grid {
+        display: block;
+      }
+
+      .bio-box {
+        width: 99%;
+        clear:both;
+        margin-bottom: 20px;
+      }
+
+      .bio-foto {
+        width: 99%;
+        clear:both;
+        margin-bottom: 20px;
+      }
+
+      .hero {
+        height: 655px;
+        min-height: auto;
+        padding-top: 0px;
+      }
+
+      .hero-text{
+        color:#fff;
+        margin-right: 12px;
+        margin-left: 0px;
+        font-size: 114%;
+      }
+
+      .hero-links {
+        margin-left:0px;
+      }
+
+      .hero-inner {
+        display: grid;
+        gap: 35px;
+        animation: none;
+      }
+
+      .section {
+        padding: 30px 0;
+      }
+
+
+
+      .logocasaponte {
+        display: none;
+      }
+
+      .artist-name {
+        font-size: 14vw;
+        margin-left: -5px;
+      }
+    }
+
+    @media (max-width: 480px){
+      .keko-bottom-banner{
+        min-height: 48px;
+      }
+
+
+      .hero-inner {
+        gap: 50px;
+      }
+
+      body{
+        padding-bottom: 48px;
+      }
+
+      .marquee__content{
+        font-size: 13px;
+        min-height: 48px;
+      }
+
+      .sticky-brand {
+        font-size: 1.15rem;
+      }
+
+      .album-player {
+        gap: 8px;
+        padding: 8px 10px;
+      }
+
+      .album-player-link {
+        width: 30px;
+        height: 30px;
+      }
+
+      .album-player-link img {
+        width: 15px;
+        height: 15px;
+      }
+
+      .footer-inner {
+        padding: 42px 0 110px;
+      }
+
+      .footer-brand h3 {
+        font-size: 2.4rem;
+      }
+
+      .video-play-ui {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 10px 12px;
+        gap: 10px;
+      }
+
+      .video-play-btn-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .video-play-title {
+        font-size: 0.88rem;
+      }
+
+      .video-play-subtitle {
+        font-size: 0.72rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero" id="top">
+    <div class="container hero-inner">
+      <div>
+        <h1 class="artist-name">Holgado</h1>
+      </div>
+
+      <div class="hero-text">
+        <p>
+          A Holgado lo llevaron a nacer a Santiago. Tardó en andar e hizo la comunión en los escolapios. Lleva 20 años haciendo música encomendado a San Cristovo, que nunca fue milagrero.
+        </p><br />
+        <p>
+          En ese tiempo pudo grabar algunos discos, girar por la península y beber mucho Ricardhú, que es como llaman al licor café que hace su tío Ricardo.
+        </p>
+
+        <div class="hero-links">
+          <a href="#discos" class="button">Discos</a>
+          <a href="#bio" class="button">Bio</a>
+          <a href="#media" class="button">Prensa</a>
+          <a href="#Tienda" class="button">Tienda</a>
+          <a href="https://open.spotify.com/intl-es/artist/5yYkHCkAqm2SwmhpbHAmbu" class="iconred"><img src="assets/images/spotify.webp" alt="Spotify"></a>
+          <a href="https://music.apple.com/es/artist/holgado/590942427" class="iconred"><img src="assets/images/applemusic.webp" alt="Apple Music"></a>
+          <a href="https://holgado.bandcamp.com/" class="iconred"><img src="assets/images/bandcamp.webp" alt="Bandcamp"></a>
+        </div>
+        <p class="noshow"><br/><small><img class="logocasaponte" src="assets/images/casaponte.png" width="10" height="10" alt=""> COPYRIGHT MMXXVI BY <a href="http://www.kekoponte.com">CASA PONTE</a> </small></p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky-nav" aria-label="Menú principal">
+    <div class="sticky-nav-inner">
+      <a href="#top" class="sticky-brand">Holgado</a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+      <label for="menu-toggle" class="menu-button" aria-label="Abrir menú">
+        <span class="menu-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </label>
+
+      <div class="sticky-menu">
+        <a href="#discos" class="sticky-link">Discos</a>
+        <a href="#bio" class="sticky-link">Bio</a>
+        <a href="#media" class="sticky-link">Prensa</a>
+        <a href="#Tienda" class="sticky-link">Tienda</a>
+
+        <div class="sticky-streaming">
+          <a href="https://open.spotify.com/intl-es/artist/5yYkHCkAqm2SwmhpbHAmbu" aria-label="Spotify">
+            <img src="assets/images/spotify.webp" alt="Spotify">
+          </a>
+          <a href="https://music.apple.com/es/artist/holgado/590942427" aria-label="Apple Music">
+            <img src="assets/images/applemusic.webp" alt="Apple Music">
+          </a>
+          <a href="https://holgado.bandcamp.com" aria-label="Bandcamp">
+            <img src="assets/images/bandcamp.webp" alt="Bandcamp">
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="discos" class="section">
+      <div class="container">
+        <h2 class="section-title">Discografía</h2>
+        <p class="section-intro">
+          Además de bastantes singles y primeras grabaciones irrastreables como "Hay mucho campo" o "Peepshow", estos son los tres discos publicados:
+        </p>
+
+        <div class="albums-grid">
+          <article class="album-card" data-audio="assets/audio/estas-solo-aqui.m4a">
+            <div class="album-cover">
+              <img src="assets/images/estassoloaqui.jpg" alt="Portada del disco Estás solo aquí">
+              
+            </div>
+            <div class="album-content">
+              <h3 class="album-title">Estás solo aquí</h3>
+              <div class="album-year">2026</div>
+              <p class="album-text">
+                Grabado y producido por Holgado. Mezclado y masterizado por Dany Richter en El Lado Izquierdo.</p>
+                <p>"Estás solo aquí" verá la luz a lo largo de 2026. </p>
+            </div>
+          </article>
+
+          <article class="album-card" data-audio="assets/audio/o-fillo-de-suso.m4a">
+            <div class="album-cover">
+              <img src="assets/images/ofillodesuso.jpg" alt="Portada del disco O Fillo de Suso">
+              <div class="album-player">
+                <button class="album-play-btn" type="button" aria-label="Reproducir adelanto"></button>
+                <div class="album-player-meta">
+                  <div class="album-player-title">O Fillo de Suso</div>
+                  <div class="album-player-state-row">
+                    <div class="mini-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                    <div class="album-player-state">Escuchar</div>
+                  </div>
+                </div>
+                <div class="album-player-links">
+                  <a class="album-player-link" href="https://open.spotify.com/intl-es/album/5GIcYR6Audx9iIJXpdKXkg" target="_blank" rel="noopener noreferrer" aria-label="Escuchar en Spotify">
+                    <img src="assets/images/spotify.webp" alt="Spotify">
+                  </a>
+                  <a class="album-player-link" href="https://music.apple.com/es/album/o-fillo-de-suso/1600241969" target="_blank" rel="noopener noreferrer" aria-label="Escuchar en Apple Music">
+                    <img src="assets/images/applemusic.webp" alt="Apple Music">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="album-content">
+              <h3 class="album-title">O Fillo de Suso</h3>
+              <div class="album-year">A Regueifa, 2021</div>
+              <p class="album-text">
+                Grabado, mezclado y producido por Holgado y masterizado por Mario G. Alberni. Todas las canciones compuestas y escritas por Holgado, excepto "Elexía" escrita por Xan Vieito. Diseño de Martina Charaf.<br><br>
+                Colaboraron: Elisa García (Violonchelo), Miguel de la Ossa (Piano) Raf Mallo y Bea Rodríguez (Grabaciones de campo), Os de Gonte (Metales) Manuela Aparicio, María Carnicer, Dani Jiménez, Nacho Lavilla, Carles Marqués-Marcet, Paula Salañer, Isabel Peña y Rodrigo Sorogoyen (Coros)<br><br>
+              </p>
+            </div>
+          </article>
+
+          <article class="album-card" data-audio="assets/audio/la-gran-promesa-blanca.m4a">
+            <div class="album-cover">
+              <img src="assets/images/lagranpromesablanca.jpg" alt="Portada del disco La Gran Promesa Blanca">
+              <div class="album-player">
+                <button class="album-play-btn" type="button" aria-label="Reproducir adelanto"></button>
+                <div class="album-player-meta">
+                  <div class="album-player-title">La Gran Promesa Blanca</div>
+                  <div class="album-player-state-row">
+                    <div class="mini-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+                    <div class="album-player-state">Escuchar</div>
+                  </div>
+                </div>
+                <div class="album-player-links">
+                  <a class="album-player-link" href="https://open.spotify.com/intl-es/album/1P30eCezmv7mVlxJ4z15YG" target="_blank" rel="noopener noreferrer" aria-label="Escuchar en Spotify">
+                    <img src="assets/images/spotify.webp" alt="Spotify">
+                  </a>
+                  <a class="album-player-link" href="https://music.apple.com/es/album/la-gran-promesa-blanca-ep/1037784293" target="_blank" rel="noopener noreferrer" aria-label="Escuchar en Apple Music">
+                    <img src="assets/images/applemusic.webp" alt="Apple Music">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="album-content">
+              <h3 class="album-title">La Gran Promesa Blanca</h3>
+              <div class="album-year">Autoeditado, 2008</div>
+              <p class="album-text">
+                Grabado, mezclado y producido en casa por Keko Ponte y masterizado por Julián Salazar. Todas las canciones fueron compuestas y escritas por Holgado.<br><br>
+                Colaboró Nachet en las baterías y Elisa García: Violonchelo. <br><br>
+                La canción "La Cenizas" forma parte de la BSO de la serie "Los Años Nuevos"
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="bio" class="section">
+      <div class="container">
+        <h2 class="section-title">Biografía</h2>
+        <div class="bio-box">
+          <p>
+            Llevo editando música de una u otra manera desde el 2003. Aunque en la actualidad rara vez toco en directo, en una primera etapa sí tocaba a menudo con una formación en la que el único miembro fijo ha sido siempre Salva González (La tienda de regalos tóxicos). Otros músicos que han formado parte de manera más itinerante en los directos son Juan Díaz (Casa, Campo Grande, Los Pintores...), Elisa García u Olmo Romero.
+          </p>
+          <p>
+            He puesto música a series de televisión como "Luimelia", "Bloguera en construcción" o "Los Años Nuevos", además de componer <a href="https://open.spotify.com/intl-es/album/3DEJyl3W9ZJqunVcMg7ztj" target="_blank">el himno del festival</a> homenaje a Casavella "El Día del Watusi".
+          </p>
+          <p>
+            En el año 2020 publiqué "O Fillo de Suso", un disco en gallego editado por A Regueifa como su primera referencia tras su refundación, y grabé la primera de las ahora famosas Miudiño Sesions en Galicia con mis primos Daniel y Diego Vieito.
+          </p>
+          <p>
+            En 2026 verá la luz lo último que he grabado: "Estás solo aquí".
+          </p>
+          <p style="margin-top: 30px;">Puedes encontrarme en redes en:</p>
+          <p>
+            <a href="https://instagram.com/kekoponte" aria-label="Instagram" class="nodeco">
+              <img class="social" src="assets/images/instagram.svg" alt="Instagram">
+            </a>
+            <a href="https://bsky.app/profile/did:plc:uy2ndsrmvcoyz25i37twi6ab" aria-label="Bluesky" class="nodeco">
+              <img class="social" src="assets/images/bluesky.svg" alt="Bluesky">
+            </a>
+            <a href="https://open.spotify.com/intl-es/artist/5yYkHCkAqm2SwmhpbHAmbu" aria-label="Spotify" class="nodeco">
+              <img class="social" src="assets/images/spotify.webp" alt="Spotify">
+            </a>
+            <a href="https://music.apple.com/es/artist/holgado/590942427" aria-label="Apple Music" class="nodeco">
+              <img class="social" src="assets/images/applemusic.webp" alt="Apple Music">
+            </a>
+            <a href="https://holgado.bandcamp.com" aria-label="Bandcamp" class="nodeco">
+              <img class="social" src="assets/images/bandcamp.webp" alt="Bandcamp">
+            </a>
+          </p>
+        </div>
+        <div class="bio-foto">
+          <img class="bio" src="assets/images/bio.jpg" alt="Foto de Luis López Carrasco">
+          <p class="pie">Foto de Luis López Carrasco</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="section">
+      <div class="container">
+        <h2 class="section-title">Prensa y vídeos</h2>
+
+        <div class="media-grid">
+          <div class="panel">
+                      <div class="press-list">
+              <div class="press-item">
+                <a href="https://www.g24.gal/-/-holgado-?p_l_back_url=%2Fsearch%3Fq%3Dholgado" target="_blank" rel="noopener noreferrer">Entrevista en la Televisión de Galicia</a>
+                <p>Una conversación sobre el proceso de creación de "O Fillo de Suso".</p>
+              </div>
+              <div class="press-item">
+                <a href="https://www.ivoox.com/ondas-indies-co-fillo-do-suso-audios-mp3_rf_85908936_1.html" target="_blank">Entrevista en Ondas Indies</a>
+                <p>Una entrevista en el podcast por excelencia de la radio galega.</p>
+              </div>
+              <div class="press-item">
+                <a href="https://www.g24.gal/-/the-lelly-kellys-holgado-e-acouga-nas-musicas-do-zigzag?p_l_back_url=%2Fsearch%3Fq%3Dholgado" target="_blank">O Fillo de Suso no ZigZag</a>
+                <p>O fillo de Suso en el magazine cultural de la televisión de galicia.</p>
+              </div>
+              <div class="press-item">
+                <a href="https://abretedeorellas.com/holgado-o-fillo-de-suso/" target="_blank">Crítica en Ábrete de Orellas</a>
+                <p>Crítica de O fillo de suso por Pepe Cunha.</p>
+              </div>
+              <div class="press-item">
+                <a href="https://lafonoteca.net/grupo/holgado/" target="_blank">Holgado en La Fonoteca</a>
+                <p>Página de Holgado en La Fonoteca.</p>
+              </div>
+              <div class="press-item">
+                <a href="http://www.crtvg.es/rg/destacados/diario-cultural-diario-cultural-do-dia-09-03-2022-5556572" target="_blank">Diario Cultural Radio Galega</a>
+                <p>O fillo de Suso en el diario cultural de la RTVG.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="video-list">
+              <div class="video-item">
+                <div class="video-thumb">
+                  <div class="video-shell">
+                    <button
+                      class="video-poster-btn"
+                      type="button"
+                      data-youtube-id="-c14hjCgjvU"
+                      data-video-title="Miudiño Sesions"
+                      aria-label="Reproducir vídeo Miudiño Sesions">
+                      <img src="assets/images/video-miudino.jpg" alt="Portada del vídeo Miudiño Sesions">
+                      <span class="video-play-ui">
+                        <span class="video-play-btn-icon" aria-hidden="true"></span>
+                        <span class="video-play-meta">
+                          <span class="video-play-title">Miudiño Sesions</span>
+                          <span class="video-play-subtitle">Ver vídeo</span>
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+                <p>La primera de las Miudiño Sesions por Noel Feans (A Regueifa).</p>
+              </div>
+
+              <div class="video-item">
+                <div class="video-thumb">
+                  <div class="video-shell">
+                    <button
+                      class="video-poster-btn"
+                      type="button"
+                      data-youtube-id="Q9tWb54Jizs"
+                      data-video-title="Notas do funeral de Ricardo Vieito"
+                      aria-label="Reproducir vídeo Notas do funeral de Ricardo Vieito">
+                      <img src="assets/images/video-tereshkova.jpg" alt="Portada del vídeo Notas do funeral de Ricardo Vieito">
+                      <span class="video-play-ui">
+                        <span class="video-play-btn-icon" aria-hidden="true"></span>
+                        <span class="video-play-meta">
+                          <span class="video-play-title">Notas do funeral de Ricardo Vieito</span>
+                          <span class="video-play-subtitle">Ver vídeo</span>
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+                <p>La artista lucense <a href="https://www.instagram.com/terreshkova/?hl=en">Mariquiña Tereshkova</a> hizo esta pieza de videoarte en la que las <i>Notas do funeral de Ricardo Vieito</i> dialogan con su propia historia familiar y el recuerdo de la pérdida de su abuela.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Tienda" class="section">
+      <div class="container">
+        <h2 class="section-title">Tienda</h2>
+        <div class="albums-grid">
+          <article class="album-card">
+            <div class="album-cover">
+              <img src="assets/images/ofillobuy.jpg" alt="Portada de la edición en vinilo de O Fillo de Suso">
+            </div>
+            <div class="album-content">
+              <h3 class="album-title">O Fillo de Suso</h3>
+              <div class="album-year">2021, Edición en vinilo</div>
+              <p class="album-text">
+                <a href="https://holgado.bandcamp.com/album/o-fillo-de-suso?action=buy&from=embed">Edición en vinilo de "O fillo de Suso"</a>.
+              </p>
+              <p>Vinilo de 12" con carpeta dobre e inlay. Los collages del LP son obras de Martina Charaf hechos a partir de un album de fotografías de la familia Vieito.</p>
+              <p>Edición limitada y numerada de 300.</p><br />
+              <p><a href="https://holgado.bandcamp.com/album/o-fillo-de-suso?action=buy&from=embed" class="button" style="font-size:100%;margin: 10px 40px 10px 40px;display: block;text-align: center;">Comprar</a></p>
+            </div>
+          </article>
+
+          <article class="album-card">
+            <div class="album-cover">
+              <img src="assets/images/lagranpromesabuy.jpg" alt="Portada de la edición en vinilo de La Gran promesa blanca">
+            </div>
+            <div class="album-content">
+              <h3 class="album-title">La gran promesa blanca</h3>
+              <div class="album-year">2008, Edición en vinilo</div>
+              <p>Vinilo de 12" con carpeta e inlay con las letras de las canciones.</p>
+              <p>Incluye una canción solo disponible en esta edición.</p>
+              <p>Autoeditado.</p>
+              <p>Edición limitada de 50.</p><br />
+
+              <input type="checkbox" id="popup-agotado" class="popup-toggle">
+
+              <label for="popup-agotado" class="btn-agotado">
+                Agotado
+              </label>
+
+              <div class="popup-overlay">
+                <div class="popup-box">
+                  <label for="popup-agotado" class="popup-close">×</label>
+                  <p>Este vinilo está agotado.</p>
+                  <p>Si quieres, <a href="mailto:keko@kekoponte.com" class="linktienda">puedes escribirme a keko@kekoponte.com</a> y te aviso si vuelve a estar disponible.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Holgado</h3>
+          <p>Gracias por visitar esta web.</p>
+
+          <div class="footer-socials">
+            <a href="https://instagram.com/kekoponte" aria-label="Instagram">
+              <img src="assets/images/instagram.svg" alt="Instagram">
+            </a>
+            <a href="https://bsky.app/profile/did:plc:uy2ndsrmvcoyz25i37twi6ab" aria-label="Bluesky">
+              <img src="assets/images/bluesky.svg" alt="Bluesky">
+            </a>
+            <a href="https://open.spotify.com/intl-es/artist/5yYkHCkAqm2SwmhpbHAmbu" aria-label="Spotify">
+              <img src="assets/images/spotify.webp" alt="Spotify">
+            </a>
+            <a href="https://music.apple.com/es/artist/holgado/590942427" aria-label="Apple Music">
+              <img src="assets/images/applemusic.webp" alt="Apple Music">
+            </a>
+            <a href="https://holgado.bandcamp.com" aria-label="Bandcamp">
+              <img src="assets/images/bandcamp.webp" alt="Bandcamp">
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">Secciones</div>
+          <div class="footer-links">
+            <a href="#discos">Discografía</a>
+            <a href="#bio">Biografía</a>
+            <a href="#media">Prensa y vídeos</a>
+            <a href="#Tienda">Tienda</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-block-title">Escuchar</div>
+          <div class="footer-stream-links">
+            <a href="https://open.spotify.com/intl-es/artist/5yYkHCkAqm2SwmhpbHAmbu" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a href="https://music.apple.com/es/artist/holgado/590942427" target="_blank" rel="noopener noreferrer">Apple Music</a>
+            <a href="https://holgado.bandcamp.com/" target="_blank" rel="noopener noreferrer">Bandcamp</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 <a href="http://www.kekoponte.com">Keko Ponte</a>. Todo el contenido de esta página está protegido bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. No así la música, de la que todos los derechos están reservados.
+        </p>
+        <div class="footer-credit">MMXXVI · <a href="http://www.kekoponte.com">CASA PONTE</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="keko-bottom-banner" role="region" aria-label="Aviso"> 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__content">
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+        </div>
+        <div class="marquee__content">
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+        </div>
+        <div class="marquee__content">
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+          <span>⌾ Compra <i>O Fillo de Suso </i> <a href="https://holgado.bandcamp.com/">en Bandcamp</a> ⌾</span>
+          <span>★ Nuevo disco de Holgado en Agosto de 2026 ★</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="sr-only">Nuevo disco de Holgado en Mayo de 2026.</span>
+  </div>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const hero = document.querySelector('.hero');
+      const stickyNav = document.querySelector('.sticky-nav');
+      const toggle = document.getElementById('menu-toggle');
+      const navLinks = Array.from(document.querySelectorAll('.sticky-link'));
+      const sectionIds = ['discos', 'bio', 'media', 'Tienda'];
+      const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      const albumCards = document.querySelectorAll('.albums-grid .album-card[data-audio]');
+      const videoPosterButtons = document.querySelectorAll('.video-poster-btn');
+
+      let currentAudio = null;
+      let currentCard = null;
+
+      function updateBackground() {
+        const y = window.scrollY || window.pageYOffset;
+        const h = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+        const progress = Math.min(y / h, 1);
+        const shift = Math.round(y * -0.06);
+        const glow = (0.06 + progress * 0.09).toFixed(3);
+        const rotate = (progress * 4).toFixed(2);
+
+        body.style.setProperty('--bg-shift-y', shift + 'px');
+        body.style.setProperty('--bg-glow', glow);
+        body.style.setProperty('--bg-rotate', rotate + 'deg');
+      }
+
+      function updateNavVisibility() {
+        const heroHeight = hero ? hero.offsetHeight : 500;
+        if (window.scrollY > heroHeight * 0.68) {
+          body.classList.add('nav-visible');
+        } else {
+          body.classList.remove('nav-visible');
+        }
+      }
+
+      function setActiveLink(id) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === '#' + id);
+        });
+      }
+
+      function updateActiveSectionByScroll() {
+        if (!sections.length) return;
+
+        const navHeight = stickyNav ? stickyNav.offsetHeight : 72;
+        const triggerY = window.scrollY + navHeight + 24;
+
+        let activeSection = sections[0];
+
+        for (let i = 0; i < sections.length; i++) {
+          const section = sections[i];
+          if (section.offsetTop <= triggerY) {
+            activeSection = section;
+          } else {
+            break;
+          }
+        }
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20;
+        if (nearBottom) {
+          activeSection = sections[sections.length - 1];
+        }
+
+        setActiveLink(activeSection.id);
+      }
+
+      document.querySelectorAll('.sticky-menu a[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (toggle) toggle.checked = false;
+        });
+      });
+
+      function resetPlayerUI(card) {
+        if (!card) return;
+        const btn = card.querySelector('.album-play-btn');
+        const state = card.querySelector('.album-player-state');
+        if (btn) btn.classList.remove('is-pause');
+        if (state) state.textContent = 'Escuchar adelanto';
+        card.classList.remove('is-playing');
+      }
+
+      function activatePlayerUI(card) {
+        if (!card) return;
+        const btn = card.querySelector('.album-play-btn');
+        const state = card.querySelector('.album-player-state');
+        if (btn) btn.classList.add('is-pause');
+        if (state) state.textContent = 'Sonando';
+        card.classList.add('is-playing');
+      }
+
+      albumCards.forEach(card => {
+        const btn = card.querySelector('.album-play-btn');
+        const state = card.querySelector('.album-player-state');
+        const audioSrc = card.dataset.audio;
+
+        if (!btn || !audioSrc) return;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (currentCard && currentCard !== card) {
+            if (currentAudio) {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            }
+            resetPlayerUI(currentCard);
+            currentAudio = null;
+            currentCard = null;
+          }
+
+          if (currentCard === card && currentAudio) {
+            if (currentAudio.paused) {
+              currentAudio.play().then(() => {
+                activatePlayerUI(card);
+              }).catch(() => {
+                if (state) state.textContent = 'No se pudo reproducir';
+              });
+            } else {
+              currentAudio.pause();
+              resetPlayerUI(card);
+            }
+            return;
+          }
+
+          const audio = new Audio(audioSrc);
+          audio.preload = 'metadata';
+
+          audio.addEventListener('ended', function () {
+            resetPlayerUI(card);
+            currentAudio = null;
+            currentCard = null;
+          });
+
+          audio.addEventListener('error', function () {
+            if (state) state.textContent = 'Archivo no encontrado';
+            btn.classList.remove('is-pause');
+          });
+
+          audio.play().then(() => {
+            currentAudio = audio;
+            currentCard = card;
+            activatePlayerUI(card);
+          }).catch(() => {
+            if (state) state.textContent = 'No se pudo reproducir';
+          });
+        });
+      });
+
+      videoPosterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const youtubeId = button.getAttribute('data-youtube-id');
+          const videoTitle = button.getAttribute('data-video-title') || 'YouTube video player';
+          const shell = button.closest('.video-shell');
+
+          if (!youtubeId || !shell) return;
+
+          const embed = document.createElement('div');
+          embed.className = 'video-embed';
+          embed.innerHTML =
+            '<iframe ' +
+            'src="https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1" ' +
+            'title="' + videoTitle.replace(/"/g, '&quot;') + '" ' +
+            'frameborder="0" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'allowfullscreen>' +
+            '</iframe>';
+
+          shell.innerHTML = '';
+          shell.appendChild(embed);
+        });
+      });
+
+      function onScrollUpdate() {
+        updateBackground();
+        updateNavVisibility();
+        updateActiveSectionByScroll();
+      }
+
+      window.addEventListener('scroll', onScrollUpdate, { passive: true });
+      window.addEventListener('resize', updateActiveSectionByScroll);
+
+      updateBackground();
+      updateNavVisibility();
+      updateActiveSectionByScroll();
+    })();
+  </script>
+</body>
+</html>

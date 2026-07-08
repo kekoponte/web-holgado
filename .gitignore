@@ -1,0 +1,5 @@
+.DS_Store
+Thumbs.db
+
+# macOS Finder metadata in nested folders
+**/.DS_Store
