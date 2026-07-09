@@ -392,15 +392,18 @@ a:hover {
       overflow: hidden;
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
     }
 
     .album-card:hover,
     .album-card.is-playing {
-      transform: translateY(-10px);
       border-color: rgba(255,255,255,0.16);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    #Tienda .album-card:hover {
+      transform: none;
     }
 
     .album-cover {
@@ -1403,6 +1406,10 @@ position: relative;
         min-height: 48px;
       }
 
+      .section-title {
+        font-size: clamp(1.7rem, 8vw, 2.25rem);
+      }
+
 
       .hero-inner {
         gap: 50px;
@@ -1892,6 +1899,7 @@ position: relative;
       const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
       const albumCards = document.querySelectorAll('.albums-grid .album-card[data-audio]');
       const videoPosterButtons = document.querySelectorAll('.video-poster-btn');
+      const preloadedAudios = new Map();
 
       let currentAudio = null;
       let currentCard = null;
@@ -1974,6 +1982,33 @@ position: relative;
         card.classList.add('is-playing');
       }
 
+      function getOrCreateAlbumAudio(card) {
+        if (preloadedAudios.has(card)) {
+          return preloadedAudios.get(card);
+        }
+
+        const audioSrc = card.dataset.audio;
+        if (!audioSrc) return null;
+
+        const audio = new Audio(audioSrc);
+        audio.preload = 'auto';
+        preloadedAudios.set(card, audio);
+        return audio;
+      }
+
+      function preloadAlbumAudios() {
+        albumCards.forEach(card => {
+          const audio = getOrCreateAlbumAudio(card);
+          if (!audio) return;
+
+          try {
+            audio.load();
+          } catch (_) {
+            // Ignora errores de precarga silenciosa; se notifican al intentar reproducir.
+          }
+        });
+      }
+
       albumCards.forEach(card => {
         const btn = card.querySelector('.album-play-btn');
         const state = card.querySelector('.album-player-state');
@@ -2009,19 +2044,24 @@ position: relative;
             return;
           }
 
-          const audio = new Audio(audioSrc);
-          audio.preload = 'metadata';
+          const audio = getOrCreateAlbumAudio(card);
+          if (!audio) return;
 
-          audio.addEventListener('ended', function () {
+          audio.preload = 'auto';
+          audio.onended = function () {
             resetPlayerUI(card);
             currentAudio = null;
             currentCard = null;
-          });
+          };
 
-          audio.addEventListener('error', function () {
+          audio.onerror = function () {
             if (state) state.textContent = 'Archivo no encontrado';
             btn.classList.remove('is-pause');
-          });
+          };
+
+          if (currentCard !== card) {
+            audio.currentTime = 0;
+          }
 
           audio.play().then(() => {
             currentAudio = audio;
@@ -2061,6 +2101,12 @@ position: relative;
         updateBackground();
         updateNavVisibility();
         updateActiveSectionByScroll();
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(preloadAlbumAudios, { timeout: 2500 });
+      } else {
+        window.setTimeout(preloadAlbumAudios, 400);
       }
 
       window.addEventListener('scroll', onScrollUpdate, { passive: true });
